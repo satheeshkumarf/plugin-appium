@@ -4,11 +4,13 @@ ARG APPIUM_VERSION=1.6.0
 ARG NODEJS_DIST_URL="https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz"
 ARG ANDROID_SDK_URL=http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz
 ARG ANDROID_BUILD_TOOLS_VERSION=24.0.0
-#Test
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Install Android tools + SDK
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${JAVA_HOME}/bin:${ANDROID_HOME}/tools:$ANDROID_HOME/platform-tools:$PATH
+
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y rinetd  && \
