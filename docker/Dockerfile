@@ -32,6 +32,6 @@ RUN mkdir /opt/apks
 # Appium Server
 EXPOSE 4723
 
-RUN systemctl disable rinetd
+#RUN systemctl disable rinetd
 
 ENV DEBIAN_FRONTEND teletype
