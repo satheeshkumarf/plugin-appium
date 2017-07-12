@@ -9,10 +9,11 @@ ARG ANDROID_BUILD_TOOLS_VERSION=24.0.0
 # Install Android tools + SDK
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${JAVA_HOME}/bin:${ANDROID_HOME}/tools:$ANDROID_HOME/platform-tools:$PATH
-ENV DEBIAN_FRONTEND teletype
 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils
+
+ENV DEBIAN_FRONTEND teletype
 	
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends rinetd  && \
