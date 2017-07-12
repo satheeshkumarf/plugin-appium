@@ -16,10 +16,11 @@ RUN apt-get update && \
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends rinetd  && \
 	apt-get autoremove && apt-get clean && rm -r /var/lib/apt/lists/* && \
-	echo -n "" > /etc/rinetd.conf && \
-	systemctl disable rinetd
+	echo -n "" > /etc/rinetd.conf 
 	
 ENV DEBIAN_FRONTEND teletype
+
+RUN systemctl disable rinetd	
 
 RUN wget -qO- "$ANDROID_SDK_URL" | tar -zx -C /opt && \
 	echo y | android update sdk --no-ui --all --filter platform-tools --force && \
