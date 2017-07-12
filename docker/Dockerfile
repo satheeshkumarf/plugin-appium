@@ -1,10 +1,10 @@
 FROM openjdk:8-jdk
 
+ARG DEBIAN_FRONTEND=noninteractive
 ARG APPIUM_VERSION=1.6.0
 ARG NODEJS_DIST_URL="https://nodejs.org/dist/v6.9.1/node-v6.9.1-linux-x64.tar.xz"
 ARG ANDROID_SDK_URL=http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz
 ARG ANDROID_BUILD_TOOLS_VERSION=24.0.0
-ARG DEBIAN_FRONTEND=noninteractive
 
 # Install Android tools + SDK
 ENV ANDROID_HOME /opt/android-sdk-linux
@@ -32,3 +32,5 @@ RUN mkdir /opt/apks
 
 # Appium Server
 EXPOSE 4723
+
+ENV DEBIAN_FRONTEND teletype
