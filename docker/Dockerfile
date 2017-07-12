@@ -10,12 +10,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${JAVA_HOME}/bin:${ANDROID_HOME}/tools:$ANDROID_HOME/platform-tools:$PATH
 
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
-
 RUN apt-get update && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y rinetd  && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils rinetd  && \
 	apt-get autoremove && apt-get clean && rm -r /var/lib/apt/lists/* && \
-	echo -n "" > /etc/rinetd.conf 
+	echo -n "" > /etc/rinetd.conf && \
+	systemctl disable rinetd
 
 RUN wget -qO- "$ANDROID_SDK_URL" | tar -zx -C /opt && \
 	echo y | android update sdk --no-ui --all --filter platform-tools --force && \
